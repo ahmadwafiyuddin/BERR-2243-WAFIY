@@ -1,0 +1,23 @@
+{
+  "name": "cloudanddatabase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmadwafiyuddin/BERR-2243-WAFIY.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmadwafiyuddin/BERR-2243-WAFIY/issues"
+  },
+  "homepage": "https://github.com/ahmadwafiyuddin/BERR-2243-WAFIY#readme",
+  "dependencies": {
+    "mongodb": "^6.20.0"
+  }
+}
