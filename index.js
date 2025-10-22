@@ -4,20 +4,56 @@ async function main() {
   const uri = "mongodb://127.0.0.1:27017";
   const client = new MongoClient(uri);
 
-  try {
+
+
+
+const drivers = [
+  {
+    name: "John Doe",
+    vehicleType: "Sedan",
+    isAvailable: true,
+    rating: 4.8
+  },
+  {
+    name: "Alice Smith",
+    vehicleType: "SUV",
+    isAvailable: false,
+    rating: 4.5
+  }
+];
+
+console.log(drivers);
+
+drivers.forEach((driver) => {
+    console.log(driver.name);
+});
+
+const count = drivers.push({
+    name: "Wafiy",
+    vehicleType: "Honda",
+    isAvailable: true,
+    rating: 14.0
+});
+console.log(drivers);
+console.log(count);
+
+async function main() {
+  try{
     await client.connect();
-    console.log("Connected to MongoDB!");
-
     const db = client.db("testDB");
-    const users = db.collection("users");
 
-    const result = await users.insertOne({ name: "Test User", age: 25 });
-    console.log("Inserted document with _id:", result.insertedId);
-  } catch (err) {
-    console.error("Error:", err);
+    const driversCollection = db.collection("drivers");
+
+
+    drivers.forEach(async (driver) => {
+      const result = await driversCollection.insertOne(driver);
+      console.log('New driver created with result: ${result}');
+    });
+
+
   } finally {
     await client.close();
-  }
+  }
 }
-
+}
 main();
