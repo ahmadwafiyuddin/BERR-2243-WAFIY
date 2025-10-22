@@ -1,11 +1,5 @@
 const { MongoClient } = require("mongodb");
 
-
-  
-
-
-
-
 const drivers = [
   {
     name: "John Doe",
@@ -51,12 +45,11 @@ async function main() {
       console.log('New driver created with result: ${result}');
     });
 
-    const availableDrivers = await db.collection('drivers').find({
-      isAvailable: true,
-      rating: true,
-      rating: { $gte: 4.5}
-    }).toArray();
-    console.log("Available drivers", availableDrivers);
+    const updateResult = await db.collection('drivers').updateOne(
+            { name: "John Doe" },
+            { $inc: { rating: 0.1 } }
+        );
+        console.log(`Driver updated with result: ${updateResult}`);
 
 
   } finally {
