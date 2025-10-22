@@ -1,8 +1,7 @@
 const { MongoClient } = require("mongodb");
 
-async function main() {
-  const uri = "mongodb://127.0.0.1:27017";
-  const client = new MongoClient(uri);
+
+  
 
 
 
@@ -38,6 +37,8 @@ console.log(drivers);
 console.log(count);
 
 async function main() {
+  const uri = "mongodb://127.0.0.1:27017";
+  const client = new MongoClient(uri);
   try{
     await client.connect();
     const db = client.db("testDB");
@@ -50,10 +51,17 @@ async function main() {
       console.log('New driver created with result: ${result}');
     });
 
+    const availableDrivers = await db.collection('drivers').find({
+      isAvailable: true,
+      rating: true,
+      rating: { $gte: 4.5}
+    }).toArray();
+    console.log("Available drivers", availableDrivers);
+
 
   } finally {
     await client.close();
   }
 }
-}
+
 main();
